@@ -20,6 +20,8 @@ func IsFileExists(filename string) bool {
 }
 
 func Command(cmd string) (*exec.Cmd, error) {
+	// When GOOS == "windows", we need to use non-POSIX rules for splitting the command.
+	// This ensures compatibility with Windows shell syntax.
 	args, err := shlex.Split(cmd, runtime.GOOS != "windows")
 	if err != nil {
 		return nil, err
