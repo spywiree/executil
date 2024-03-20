@@ -6,8 +6,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 
-	"github.com/google/shlex"
+	"github.com/anmitsu/go-shlex"
 )
 
 func IsFileExists(filename string) bool {
@@ -19,7 +20,7 @@ func IsFileExists(filename string) bool {
 }
 
 func Command(cmd string) (*exec.Cmd, error) {
-	args, err := shlex.Split(cmd)
+	args, err := shlex.Split(cmd, runtime.GOOS != "windows")
 	if err != nil {
 		return nil, err
 	}
