@@ -46,5 +46,5 @@ func RedirectIO(cmd *exec.Cmd) {
 }
 
 func SetWdToParent(cmd *exec.Cmd) {
-	cmd.Dir = filepath.Dir(cmd.Path)
+	cmd.Dir = filepath.Dir(cmd.Args[0])
 }
