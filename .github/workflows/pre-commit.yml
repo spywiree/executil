@@ -6,9 +6,9 @@ on:
     branches: [main]
   push:
     branches: [main]
-    paths:
-      - "**/*.go"
-      - "go.*"
+    # paths:
+    #   - "**/*.go"
+    #   - "go.*"
 
 permissions:
   contents: read
@@ -28,6 +28,9 @@ jobs:
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v4
+        with:
+          skip-pkg-cache: true
+          skip-build-cache: true
 
   govulncheck:
     runs-on: ubuntu-latest
