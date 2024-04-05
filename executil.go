@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"mvdan.cc/sh/v3/shell"
+	"github.com/buildkite/shellwords"
 )
 
 func IsFileExists(filename string) bool {
@@ -19,7 +19,7 @@ func IsFileExists(filename string) bool {
 }
 
 func Command(cmd string) (*exec.Cmd, error) {
-	args, err := shell.Fields(cmd, nil)
+	args, err := shellwords.SplitBatch(cmd)
 	if err != nil {
 		return nil, err
 	}
